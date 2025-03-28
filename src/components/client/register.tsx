@@ -52,7 +52,7 @@ function Register() {
             <p className="text-gray-600">
               Already have an account?{" "}
               <a href="/login" className="text-red-500 hover:underline">
-                Log in
+                Log innn
               </a>
             </p>
           </div>
