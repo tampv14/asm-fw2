@@ -3,7 +3,7 @@ import React from "react";
 import { IProduct } from "../../../interface/product";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, Popconfirm, Table } from "antd";
+import { Button, message, Popconfirm, Table } from "antd";
 import { DeleteFilled, EditFilled, WarningFilled } from "@ant-design/icons";
 
 const ListProduct = () => {
@@ -31,7 +31,7 @@ const ListProduct = () => {
       }
     },
     onSuccess: () => {
-      alert("Xoa thanh cong");
+      message.success("Xoa thanh cong");
       queryclient.invalidateQueries({ queryKey: ["products"] });
     },
   });
