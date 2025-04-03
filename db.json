@@ -1,4 +1,60 @@
 {
   "books": [],
-  "users": []
+  "users": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "The north coat",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "price": "360111",
+      "category": "SmartWacth"
+    },
+    {
+      "id": 2,
+      "name": "Gucci duffle bag",
+      "images": "https://tse4.mm.bing.net/th?id=OIP.oI-1AKbAiGWohCyt8WRy1gHaHa&pid=Api&P=0&h=180",
+      "price": 1160,
+      "category": "Phones"
+    },
+    {
+      "id": 3,
+      "name": "RGB liquid CPU Cooler",
+      "images": "https://tse4.mm.bing.net/th?id=OIP.bnRBmSdpGn0yQ5-L9uVRAwHaDm&pid=Api&P=0&h=180",
+      "price": "170111",
+      "category": "Computers"
+    },
+    {
+      "id": 4,
+      "name": "Small BookShelf",
+      "images": "https://tse1.mm.bing.net/th?id=OIP.pUpUf6qs12Qrz9XDNsZDgAHaHa&pid=Api&P=0&h=180",
+      "price": "13131313",
+      "category": "Phones"
+    },
+    {
+      "name": "RGB liquid CPU Cooler",
+      "images": "https://tse4.mm.bing.net/th?id=OIP.bnRBmSdpGn0yQ5-L9uVRAwHaDm&pid=Api&P=0&h=180",
+      "price": "17011111",
+      "category": "Phones",
+      "id": 5
+    },
+    {
+      "name": "cccc",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "price": "3000000",
+      "category": "Phones",
+      "id": 6
+    }
+  ],
+  "categories": [
+    {
+      "name": "Computer",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "id": 2
+    },
+    {
+      "name": "Phones",
+      "images": "https://tse1.mm.bing.net/th?id=OIP.pUpUf6qs12Qrz9XDNsZDgAHaHa&pid=Api&P=0&h=180",
+      "id": 3
+    }
+  ]
 }

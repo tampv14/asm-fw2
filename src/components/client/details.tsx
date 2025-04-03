@@ -140,40 +140,35 @@ function Details() {
 
       {/* Related Products Section */}
       <div className="mt-12">
-        <h2 className="text-xl font-bold text-red-500 mb-10 ">Related Items</h2>
+        <h2 className="text-xl font-bold text-red-500 mb-10">Related Items</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {relatedItems.map((item, index) => (
             <div
               key={index}
-              className="border rounded-lg shadow-lg p-4 relative hover:shadow-xl transition"
+              className="border rounded-lg shadow-lg p-4 relative hover:shadow-xl transition group overflow-hidden"
             >
               {item.discount && (
-                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded z-10">
                   {item.discount}
                 </span>
               )}
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-32 object-contain"
-              />
+              <div className="relative">
+                <img src={item.image || "/placeholder.svg"} alt={item.name} className="w-full h-32 object-contain" />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button className="bg-white text-black font-medium py-2 px-4 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
               <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
               <p className="text-red-500 text-lg font-bold">
-                ${item.price}{" "}
-                <span className="text-gray-400 line-through">
-                  ${item.oldPrice}
-                </span>
+                ${item.price} {item.oldPrice && <span className="text-gray-400 line-through">${item.oldPrice}</span>}
               </p>
-              <p className="text-yellow-500 text-sm">
-                ⭐⭐⭐⭐⭐ ({item.rating})
-              </p>
-              <button className="mt-2 w-full bg-black text-white py-2 flex items-center justify-center hover:bg-gray-800 transition">
-                🛒 Add To Cart
-              </button>
+              <p className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐ ({item.rating})</p>
             </div>
           ))}
         </div>
-      </div>
+        </div>
     </div>
   );
 }
