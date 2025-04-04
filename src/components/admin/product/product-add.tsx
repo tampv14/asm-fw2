@@ -41,7 +41,6 @@ const AddProduct = () => {
     <div className="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-center mb-6"> 📝 Thêm Sản Phẩm</h2>
       <form onSubmit={handleSubmit(onsubmit)} className="space-y-6">
-        {/* Tên sản phẩm */}
         <div>
           <label className="block text-sm font-medium mb-2">Tên sản phẩm</label>
           <input
@@ -57,7 +56,6 @@ const AddProduct = () => {
           )}
         </div>
 
-        {/* Hình ảnh sản phẩm */}
         <div>
           <label className="block text-sm font-medium mb-2">
             Hình ảnh sản phẩm
@@ -70,7 +68,6 @@ const AddProduct = () => {
           />
         </div>
 
-        {/* Giá sản phẩm */}
         <div>
           <label className="block text-sm font-medium mb-2">Giá sản phẩm</label>
           <input
@@ -90,7 +87,6 @@ const AddProduct = () => {
           )}
         </div>
 
-        {/* Danh mục sản phẩm */}
         <div>
           <label className="block text-sm font-medium mb-2">
             Chọn danh mục
@@ -109,7 +105,6 @@ const AddProduct = () => {
           </select>
         </div>
 
-        {/* Nút gửi */}
         <div className="text-center">
           <button
             type="submit"

@@ -1,6 +1,24 @@
+import axios from "axios";
 import React from "react";
+import { ICate } from "../../interface/category";
+import { useQuery } from "@tanstack/react-query";
+import { IProduct } from "../../interface/product";
 
 const Home = () => {
+  const { data: categories } = useQuery<ICate[]>({
+    queryKey: ["cate"],
+    queryFn: async () => {
+      const { data } = await axios.get("http://localhost:3000/categories");
+      return data;
+    },
+  });
+  const { data: products } = useQuery<IProduct[]>({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const { data } = await axios.get("http://localhost:3000/products");
+      return data;
+    },
+  });
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Categories and Hero Banner */}
@@ -126,161 +144,70 @@ const Home = () => {
 
       {/* Browse By Category */}
       <div className="my-12">
-        <div className="flex items-center mb-4">
-          <div className="w-1 h-10 bg-red-500 mr-3"></div>
-          <span className="text-red-500 font-medium">Categories</span>
+      <div className="flex items-center mb-4">
+        <div className="w-1 h-10 bg-red-500 mr-3"></div>
+        <span className="text-red-500 font-medium">Categories</span>
+      </div>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Browse By Category</h2>
+        <div className="flex space-x-2">
+          <button className="p-2 border rounded hover:bg-gray-100 transition">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button className="p-2 border rounded hover:bg-gray-100 transition">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Browse By Category</h2>
-          <div className="flex space-x-2">
-            <button className="p-2 border rounded hover:bg-gray-100 transition">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
+      </div>
+
+      <div className="container mx-auto p-4">
+       
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {categories?.map((cate) => (
+              <div
+                key={cate.id}
+                className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50"
               >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <button className="p-2 border rounded hover:bg-gray-100 transition">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+                <img
+                  src={cate.images}
+                  alt={cate.name}
+                  className="h-10 w-10 object-contain mb-2 transition-all group-hover:scale-110"
+                />
+                <span className="text-center font-medium group-hover:text-red-500">
+                  {cate.name}
+                </span>
+              </div>
+            ))}
           </div>
-        </div>
-        <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {/* Phone Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="7" y="2" width="10" height="20" rx="2" ry="2" />
-            <path d="M12 18h.01" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">Phones</span>
-        </div>
-
-        {/* Computers Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-            <path d="M8 21h8" />
-            <path d="M12 17v4" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">Computers</span>
-        </div>
-
-        {/* SmartWatch Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="7" />
-            <polyline points="12 9 12 12 13.5 13.5" />
-            <path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">SmartWatch</span>
-        </div>
-
-        {/* Camera Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-            <circle cx="12" cy="13" r="3" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">Camera</span>
-        </div>
-
-        {/* Headphones Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">HeadPhones</span>
-        </div>
-
-        {/* Gaming Category */}
-        <div className="group border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 h-32 hover:shadow-lg hover:border-red-500 hover:scale-105 hover:bg-red-50">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 mx-auto mb-2 transition-colors duration-300 group-hover:text-red-500"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M6 11h4M8 9v4M15 12h.01M18 10h.01" />
-            <rect width="20" height="12" x="2" y="6" rx="2" />
-          </svg>
-          <span className="text-center font-medium group-hover:text-red-500">Gaming</span>
-        </div>
+        
       </div>
     </div>
-      </div>
       <div className="my-12">
         <div className="flex items-center mb-4">
           <div className="w-1 h-10 bg-red-500 mr-3"></div>
@@ -293,13 +220,13 @@ const Home = () => {
           </button>
         </div>
         <div className="container mx-auto p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Product 1: The north coat */}
-        <div className="bg-gray-50 rounded-lg overflow-hidden group">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {products?.map((product) => (
+        <div key={product.id} className="bg-gray-50 rounded-lg overflow-hidden group">
           <div className="relative h-60 bg-gray-100">
             <img
-              src="/src/assets/img/Cart (1).png"
-              alt="The north coat"
+              src={product.images}
+              alt={product.name}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -309,154 +236,27 @@ const Home = () => {
             </div>
           </div>
           <div className="p-4">
-            <h3 className="font-medium">The north coat</h3>
+            <h3 className="font-medium">{product.name}</h3>
             <div className="flex items-center mt-2">
-              <span className="text-red-500 font-semibold">$250</span>
-              <span className="text-gray-400 line-through ml-2">$360</span>
+              <span className="text-red-500 font-semibold">${product.price}</span>
+           
             </div>
             <div className="flex items-center mt-2">
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-4 h-4 text-yellow-400 fill-current"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+              ))}
               <span className="text-xs text-gray-500 ml-2">(65)</span>
             </div>
           </div>
         </div>
-
-        {/* Product 2: Gucci duffle bag */}
-        <div className="bg-gray-50 rounded-lg overflow-hidden group">
-          <div className="relative h-60 bg-gray-100">
-            <img
-              src="/src/assets/img/Cart (2).png"
-              alt="Gucci duffle bag"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button className="bg-white text-black font-medium py-2 px-4 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-          <div className="p-4">
-            <h3 className="font-medium">Gucci duffle bag</h3>
-            <div className="flex items-center mt-2">
-              <span className="text-red-500 font-semibold">$960</span>
-              <span className="text-gray-400 line-through ml-2">$1160</span>
-            </div>
-            <div className="flex items-center mt-2">
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <span className="text-xs text-gray-500 ml-2">(65)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Product 3: RGB liquid CPU Cooler */}
-        <div className="bg-gray-50 rounded-lg overflow-hidden group">
-          <div className="relative h-60 bg-gray-100">
-            <img
-              src="/src/assets/img/Cart (3).png"
-              alt="RGB liquid CPU Cooler"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button className="bg-white text-black font-medium py-2 px-4 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-          <div className="p-4">
-            <h3 className="font-medium">RGB liquid CPU Cooler</h3>
-            <div className="flex items-center mt-2">
-              <span className="text-red-500 font-semibold">$160</span>
-              <span className="text-gray-400 line-through ml-2">$170</span>
-            </div>
-            <div className="flex items-center mt-2">
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <span className="text-xs text-gray-500 ml-2">(65)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Product 4: Small BookShelf */}
-        <div className="bg-gray-50 rounded-lg overflow-hidden group">
-          <div className="relative h-60 bg-gray-100">
-            <img
-              src="/src/assets/img/Cart (4).png"
-              alt="Small BookShelf"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button className="bg-white text-black font-medium py-2 px-4 rounded-md hover:bg-red-500 hover:text-white transition-colors duration-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-          <div className="p-4">
-            <h3 className="font-medium">Small BookShelf</h3>
-            <div className="flex items-center mt-2">
-              <span className="text-red-500 font-semibold">$360</span>
-            </div>
-            <div className="flex items-center mt-2">
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <span className="text-xs text-gray-500 ml-2">(65)</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
+    </div>
     </div>
       </div>
       <div className="my-12">

@@ -132,7 +132,7 @@ const EditProduct = () => {
             type="submit"
             className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition"
           >
-          Update
+            Update
           </button>
         </div>
       </form>
