@@ -16,6 +16,7 @@ import AddProduct from "./components/admin/product/product-add";
 import ListProduct from "./components/admin/product/product-list";
 import EditProduct from "./components/admin/product/product-edit";
 import CategoryEdit from "./components/admin/category/category-edit";
+import ProductDetail from "./components/client/product-details";
 type Props = {};
 
 const App = (props: Props) => {
@@ -29,6 +30,7 @@ const App = (props: Props) => {
         { path: "login", element: <Login /> },
         { path: "category", element: <Category /> },
         { path: "details", element: <Details /> },
+        { path: "product/details/:id", element: <ProductDetail /> },
         { path: "err", element: <Not /> },
       ],
     },

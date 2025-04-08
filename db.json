@@ -34,13 +34,27 @@
       "name": "cccc",
       "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
       "price": "3000000",
-      "category": "Gaming",
+      "category": "Camera",
       "id": 5
+    },
+    {
+      "name": "Tam pahmầ",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "price": "1000000",
+      "category": "Phones",
+      "id": 6
+    },
+    {
+      "name": "Tam pahmầ",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "price": "1000000",
+      "category": "Phones",
+      "id": 7
     }
   ],
   "categories": [
     {
-      "name": "Computer",
+      "name": "Computers",
       "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
       "id": 2
     },
@@ -50,12 +64,12 @@
       "id": 3
     },
     {
-      "name": "nhu ccc",
+      "name": "kfifi",
       "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
       "id": 4
     },
     {
-      "name": "nhu ccc",
+      "name": "mkmkmkm",
       "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
       "id": 5
     },
@@ -63,6 +77,11 @@
       "name": "nhu ccc",
       "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
       "id": 6
+    },
+    {
+      "name": "nhu ccc",
+      "images": "https://tse3.mm.bing.net/th?id=OIP.7n-iFatELSqB1WA2_WKzEAHaKY&pid=Api&P=0&h=180",
+      "id": 7
     }
   ]
 }
